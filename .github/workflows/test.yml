@@ -12,7 +12,8 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_DATABASE: backend
+          MYSQL_DATABASE: 'todo-api-v1'
+          MYSQL_ROOT_PASSWORD: password
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         options: >-
           --health-cmd="mysqladmin ping"
@@ -34,12 +35,18 @@ jobs:
             ${{ runner.os }}-composer-
       - name: Install Dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer install --no-interaction --prefer-dist       
+        run: composer install --no-interaction --prefer-dist
+      - name: composer dump autoload
+        run: composer dump-autoload
       - name: Generate APP_KEY
         run: php artisan key:generate --env=testing
+      - name: Migration
+        run: php artisan migrate --force
+      - name: Seeder
+        run: php artisan db:seed --force
       - name: Psalm
-        run: ./vendor/bin/psalm --php-version=8.0    
+        run: ./vendor/bin/psalm --php-version=8.0
       - name: Execute tests
         env:
           DB_HOST: 127.0.0.1
-        run: ./vendor/bin/phpunit
+        run: vendor/bin/phpunit
