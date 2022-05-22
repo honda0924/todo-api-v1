@@ -13,8 +13,7 @@ jobs:
           - 3306:3306
         env:
           MYSQL_DATABASE: todo-api-v1
-          MYSQL_USER: root
-          MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: password
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         options: >-
           --health-cmd="mysqladmin ping"
@@ -37,6 +36,8 @@ jobs:
       - name: Install Dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --no-interaction --prefer-dist
+      - name: composer dump autoload
+        run: composer dump-autoload
       - name: Generate APP_KEY
         run: php artisan key:generate --env=testing
       - name: Migration
