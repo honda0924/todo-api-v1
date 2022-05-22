@@ -17,6 +17,6 @@ class Category extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany('App\Model\Task')->withTimestamps();
+        return $this->belongsToMany('App\Models\Task')->withTimestamps();
     }
 }

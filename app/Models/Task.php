@@ -20,6 +20,6 @@ class Task extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany('App\Model\Category')->withTimestamps();
+        return $this->belongsToMany('App\Models\Category')->withTimestamps();
     }
 }
