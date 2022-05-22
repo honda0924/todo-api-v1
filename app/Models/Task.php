@@ -18,8 +18,13 @@ class Task extends Model
         'done'
     ];
 
-    public function tasks()
+    public function categories()
     {
         return $this->belongsToMany('App\Models\Category')->withTimestamps();
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User')->withTimestamps();
     }
 }

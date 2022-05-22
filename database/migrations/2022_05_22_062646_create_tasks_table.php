@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content')->nullable(); // null許容
+            $table->float('estimated_time')->default(0.0);
+            $table->string('due_date');
             $table->integer('priority')->default(0); // 初期値設定 low, middle, high
             $table->integer('severity')->default(0); // 初期値設定 low, middle, high
             $table->integer('status')->default(0); // 初期値設定 stacked, prepared, WIP, verifying, done
