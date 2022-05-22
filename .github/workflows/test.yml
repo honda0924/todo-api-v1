@@ -42,6 +42,8 @@ jobs:
         run: php artisan key:generate --env=testing
       - name: Migration
         run: php artisan migrate --force
+      - name: Seeder
+        run: php artisan db:seed
       - name: Psalm
         run: ./vendor/bin/psalm --php-version=8.0
       - name: Execute tests
