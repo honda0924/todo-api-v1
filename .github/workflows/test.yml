@@ -42,4 +42,4 @@ jobs:
       - name: Execute tests
         env:
           DB_HOST: 127.0.0.1
-        run: ./vendor/bin/phpunit
+        run: vendor/bin/phpunit
