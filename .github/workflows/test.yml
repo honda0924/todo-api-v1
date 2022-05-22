@@ -43,7 +43,7 @@ jobs:
       - name: Migration
         run: php artisan migrate --force
       - name: Seeder
-        run: php artisan db:seed
+        run: php artisan db:seed --force
       - name: Psalm
         run: ./vendor/bin/psalm --php-version=8.0
       - name: Execute tests
