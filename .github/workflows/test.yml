@@ -38,7 +38,7 @@ jobs:
       - name: Generate APP_KEY
         run: php artisan key:generate --env=testing
       - name: Migration
-        run: php artisan migrate
+        run: php artisan migrate --force
       - name: Psalm
         run: ./vendor/bin/psalm --php-version=8.0
       - name: Execute tests
